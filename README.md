@@ -1,6 +1,6 @@
 # Projeto de Criptografia RSA
 
-Bem-vindo ao repositório do projeto de **Criptografia RSA**. Este projeto foi desenvolvido como parte do requisito avaliativo da disciplina de Matemática Discreta do curso de Ciência da Computação da Universidade Federal de Alagoas (UFAL).
+Seja bem-vindo ao repositório do projeto de **Criptografia RSA**. Este projeto foi desenvolvido como parte do requisito avaliativo da disciplina de Matemática Discreta do curso de Ciência da Computação da Universidade Federal de Alagoas (UFAL).
 
 ## Tecnologias Utilizadas
 
