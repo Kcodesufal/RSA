@@ -1,19 +1,25 @@
 #include <stdio.h>
 
-long long int expo(int number, long long int expoent)
+long long modPow(long long base, long long exponent, long long modulo)
 {
-    if (expoent == 0)
+    long long result = 1;
+    base %= modulo;
+
+    while (exponent > 0)
     {
-        return 1;
+        if ( exponent % 2 == 1)
+        {
+            result = (result * base) % modulo;
+        }
+
+        base = (base * base) % modulo;
+        exponent /= 2;
     }
-    else
-    {
-        return number * expo(number, expoent-1);
-    }
+
+    return result;
 }
 
-
-void char_to_int(char text[], int converted[], int size)
+void char_to_int(char text[], long long int converted[], int size)
 {
     for (int i = 0; i < size; ++i)
     {
@@ -24,18 +30,11 @@ void char_to_int(char text[], int converted[], int size)
     printf("\n");
 }
 
-void cifrar(int converted[], int size, long long int n, long long int e)
+void cifrar(long long int converted[], int size, long long int n, long long int e)
 {
-    long long int aux;
     for (int i = 0; i < size; ++i)
     {
-        aux = expo(converted[i], e) % n;
-
-        while (aux <= 0) aux += n;
-
-        while(aux > n) aux -= n;
-
-        converted[i] = aux;
+        converted[i] = modPow(converted[i],e,n);
         printf("%d ", converted[i]);
     }
 }
@@ -66,7 +65,7 @@ int main()
 
     printf("n = %lld e = %lld\n", n, e);
 
-    int converted[size];
+    long long int converted[size];
 
     char_to_int(text, converted, size);
 
