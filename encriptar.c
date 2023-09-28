@@ -51,7 +51,8 @@ int main()
     int i = 0;
     int size = 0;
 
-    while((text[i] = fgetc(pura)) != EOF){
+    while((text[i] = fgetc(pura)) != EOF)
+    {
         i++;
         size++;
     }
