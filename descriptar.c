@@ -29,7 +29,8 @@ long long modInverse(long long a, long long m)
     if (m == 1)
         return 0;
  
-    while (a > 1) {
+    while (a > 1) 
+    {
         // q is quotient
         long long q = a / m;
         long long t = m;
