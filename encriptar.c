@@ -74,8 +74,8 @@ int main()
     
     for (i = 0; i < size; ++i)
     {
-        if (i == 0) fprintf(ctd,"%d", converted[i]);
-        else fprintf(ctd," %d", converted[i]);
+        if (i == 0) fprintf(ctd,"%lld", converted[i]);
+        else fprintf(ctd," %lld", converted[i]);
     }
     
     fclose(pk);
