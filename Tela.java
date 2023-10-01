@@ -36,7 +36,7 @@ public class Tela implements ActionListener{
         tela.setVisible(true);
         tela.setSize(920,660);
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setResizable(true);
+        tela.setResizable(false);
         tela.getContentPane().setBackground(new Color(0,0,0));
         
         //Cria o texto
