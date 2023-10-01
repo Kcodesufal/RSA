@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 long long modPow(long long base, long long exponent, long long modulo)
 {
@@ -7,7 +9,7 @@ long long modPow(long long base, long long exponent, long long modulo)
 
     while (exponent > 0)
     {
-        if ( exponent % 2 == 1)
+        if (exponent % 2 == 1)
         {
             result = (result * base) % modulo;
         }
@@ -19,26 +21,15 @@ long long modPow(long long base, long long exponent, long long modulo)
     return result;
 }
 
-void char_to_int(char text[], long long int converted[], int size)
-{
-    for (int i = 0; i < size; ++i)
-    {
-        converted[i] = text[i];
-        printf("%d ", converted[i]);
-    }
-
-    printf("\n");
-}
-
 void cifrar(long long int converted[], int size, long long int n, long long int e)
 {
     for (int i = 0; i < size; ++i)
     {
-        converted[i] = modPow(converted[i],e,n);
-        printf("%d ", converted[i]);
+        converted[i] = modPow(converted[i], e, n);
+        printf("%lld ", converted[i]);
     }
+    printf("\n");
 }
-
 
 int main()
 {
@@ -46,39 +37,50 @@ int main()
     FILE *pura = fopen("paraBack/mensagemPura.txt", "r");
     FILE *ctd = fopen("msgCript.txt", "w");
 
-    char text[256];
-
-    int i = 0;
     int size = 0;
+    int i = 0;
 
-    while((text[i] = fgetc(pura)) != EOF)
+    if (pk == NULL)
+    {
+        printf("Error: could not open file.\n");
+        exit(1);
+    }
+
+    // read n and e from file
+    long long int n, e;
+    fscanf(pk, "%lld %lld", &n, &e);
+
+    // read text from file
+    char text[2500];
+    
+    while ((text[i] = fgetc(pura)) != EOF)
     {
         i++;
         size++;
     }
 
-
-    printf("texto : %s\n", text);
-    printf("tamanho: %d\n", size);
-
-    long long int n, e;
-    fscanf(pk, "%lld %lld", &n, &e);
-
-    printf("n = %lld e = %lld\n", n, e);
-
+    // convert text to long long int array
     long long int converted[size];
-
-    char_to_int(text, converted, size);
-
-    cifrar(converted, size, n, e);
-    
     for (i = 0; i < size; ++i)
     {
-        if (i == 0) fprintf(ctd,"%lld", converted[i]);
-        else fprintf(ctd," %lld", converted[i]);
+        converted[i] = text[i];
+        printf("%lld ", converted[i]);
     }
-    
+    printf("\n");
+
+    // encrypt text
+    cifrar(converted, size, n, e);
+
+    for (i = 0; i < size; ++i)
+    {
+        if (i == 0)
+            fprintf(ctd, "%lld", converted[i]);
+        else
+            fprintf(ctd, " %lld", converted[i]);
+    }
+
     fclose(pk);
+    fclose(pura);
     fclose(ctd);
 
     return 0;
