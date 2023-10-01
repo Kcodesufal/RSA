@@ -90,7 +90,7 @@ public class ChavePublica implements ActionListener{
         
         //Configura o objeto tela
         tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        tela.setResizable(true);
+        tela.setResizable(false);
         tela.setSize(920, 660);
         tela.getContentPane().setBackground(new Color(0,0,0));
         tela.setLayout(new BorderLayout());
